@@ -10,8 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "AUTHORITY")
+@Entity(name = "AUTHORITY")
 public class Authority implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

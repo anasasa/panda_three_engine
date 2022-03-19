@@ -40,9 +40,6 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    @PreAuthorize("hasAuthority('USER_READ')")
-    public List<User> getUsersByGroupId(long groupId) { return userRepository.findAllUsersByGroupId(groupId); }
-
     @PreAuthorize("hasAuthority('USER_CREATE')")
     public void addUserToGroup(User user, Group group) {
         user.getGroupList().add(group);

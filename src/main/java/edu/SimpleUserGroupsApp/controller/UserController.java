@@ -56,14 +56,6 @@ public class UserController {
         userService.saveUser(userService.saveUser(userMapper.mapDtoToUser(userDto)));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/group/{groupId}")
-    public List<UserDto> getUsersByGroup(@PathVariable(value = "groupId") long groupId) {
-        List<User> users = userService.getUsersByGroupId(groupId);
-        return users.stream()
-                .map(user -> userMapper.mapUserToDto(user))
-                .collect(Collectors.toList());
-    }
-
     @RequestMapping(method = RequestMethod.PUT, value = "/addGroup/{groupId}")
     public void updateUserGroup(@RequestBody UserDto userDto,
                                 @PathVariable(value = "groupId") long groupId) {

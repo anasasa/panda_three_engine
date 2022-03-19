@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "GROUPS")
+@Entity(name = "GROUPS")
 public class Group {
     @Id
     @NotNull
@@ -26,10 +26,4 @@ public class Group {
 
     @ManyToMany(mappedBy = "groupList")
     List<User> userList;
-//
-//    //for tests only
-//    public Group(String name, String description) {
-//        this.name = name;
-//        this.description = description;
-//    }
 }

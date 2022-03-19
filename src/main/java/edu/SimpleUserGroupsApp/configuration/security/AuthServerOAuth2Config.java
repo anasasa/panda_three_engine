@@ -24,17 +24,18 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Import(ServerSecurityConfig.class)
 public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter {
-    @Autowired
     private DataSource dataSource;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
-
-    @Autowired
     private UserDetailsService userDetailsService;
+    private PasswordEncoder clientPasswordEncoder;
 
     @Autowired
-    private PasswordEncoder clientPasswordEncoder;
+    public AuthServerOAuth2Config(DataSource dataSource, AuthenticationManager authenticationManager, UserDetailsService userDetailsService, PasswordEncoder clientPasswordEncoder) {
+        this.dataSource = dataSource;
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.clientPasswordEncoder = clientPasswordEncoder;
+    }
 
     @Bean
     public TokenStore tokenStore() {

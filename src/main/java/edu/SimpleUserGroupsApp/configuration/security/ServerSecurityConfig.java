@@ -18,11 +18,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Order(SecurityProperties.DEFAULT_FILTER_ORDER)
 @Import(Encoder.class)
 public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
     private UserDetailsService userDetailsService;
+    private PasswordEncoder userPasswordEncoder;
 
     @Autowired
-    private PasswordEncoder userPasswordEncoder;
+    public ServerSecurityConfig(UserDetailsService userDetailsService, PasswordEncoder userPasswordEncoder) {
+        this.userDetailsService = userDetailsService;
+        this.userPasswordEncoder = userPasswordEncoder;
+    }
 
     @Override
     @Bean

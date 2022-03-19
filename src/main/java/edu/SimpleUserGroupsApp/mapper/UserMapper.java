@@ -2,7 +2,6 @@ package edu.SimpleUserGroupsApp.mapper;
 
 import edu.SimpleUserGroupsApp.model.User;
 import edu.SimpleUserGroupsApp.model.dto.UserDto;
-import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

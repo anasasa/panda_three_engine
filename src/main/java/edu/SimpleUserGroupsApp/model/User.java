@@ -10,14 +10,10 @@ import java.util.Collection;
 import java.util.List;
 
 
-//@NamedQuery(
-//        name = "User.findAllUsersByGroupId",
-//        query = "FROM User JOIN Group g where g.id = :id"
-//)
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "USERS")
+@Entity(name = "USERS")
 public class User implements UserDetails {
     @Id
     @NotNull
@@ -57,13 +53,14 @@ public class User implements UserDetails {
             joinColumns = {@JoinColumn(name = "USER_ID")},
             inverseJoinColumns = {@JoinColumn(name = "GROUP_ID")}
     )
-    List<Group> groupList;
+    private List<Group> groupList;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "USERS_AUTHORITIES",
-            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID"))
+            joinColumns = {@JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID")}
+    )
     private Collection<Authority> authorities;
 
     @Override
