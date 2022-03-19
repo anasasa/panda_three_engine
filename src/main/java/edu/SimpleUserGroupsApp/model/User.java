@@ -1,8 +1,9 @@
 package edu.SimpleUserGroupsApp.model;
 
 import edu.SimpleUserGroupsApp.model.security.Authority;
-import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity(name = "USERS")
-public class User implements UserDetails {
+public class User {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,19 +35,6 @@ public class User implements UserDetails {
     @Column(name = "PASSWORD")
     private String password;
 
-
-    @Column(name = "ACCOUNT_EXPIRED")
-    private boolean accountExpired;
-
-    @Column(name = "ACCOUNT_LOCKED")
-    private boolean accountLocked;
-
-    @Column(name = "CREDENTIALS_EXPIRED")
-    private boolean credentialsExpired;
-
-    @Column(name = "ENABLED")
-    private boolean enabled;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "JOIN_USERS_GROUPS",
@@ -62,26 +50,6 @@ public class User implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID")}
     )
     private Collection<Authority> authorities;
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return !isAccountExpired();
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return !isAccountLocked();
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return !isCredentialsExpired();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return !isEnabled();
-    }
 
     //for tests only
     public User(long id, String username, String email) {

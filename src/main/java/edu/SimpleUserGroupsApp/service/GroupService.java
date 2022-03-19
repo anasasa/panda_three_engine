@@ -18,7 +18,6 @@ public class GroupService  {
         this.groupRepository = groupRepository;
     }
 
-    @Cacheable(value = "groupCache", key = "#id")
     @PreAuthorize("hasAuthority('GROUP_READ') and hasAuthority('USER_READ')")
     public Group getGroupById(Long id) {
         return groupRepository.findById(id).orElseThrow(RuntimeException::new);

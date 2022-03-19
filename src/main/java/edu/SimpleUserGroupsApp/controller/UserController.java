@@ -1,12 +1,10 @@
 package edu.SimpleUserGroupsApp.controller;
 
 import edu.SimpleUserGroupsApp.mapper.UserMapper;
-import edu.SimpleUserGroupsApp.mapper.UserMapper2;
 import edu.SimpleUserGroupsApp.model.User;
 import edu.SimpleUserGroupsApp.model.dto.UserDto;
 import edu.SimpleUserGroupsApp.service.GroupService;
 import edu.SimpleUserGroupsApp.service.UserService;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
